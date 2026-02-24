@@ -1,0 +1,7 @@
+tensorflow-cpu
+streamlit
+librosa
+numpy
+matplotlib
+scikit-learn
+tqdm
