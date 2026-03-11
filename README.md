@@ -8,7 +8,7 @@
 The model has been rigorously tested on original forest audio data and achieved a high degree of sensitivity and precision.
 
 | Metric | Value |
-| :--- | :--- |
+| :--- | :--- | 
 | **Overall Accuracy** | **94.4%** |
 | **Chainsaw Recall** | 95% |
 | **Gunshot Recall** | 95% |
