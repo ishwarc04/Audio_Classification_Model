@@ -233,11 +233,11 @@ The final model was evaluated on a held-out test set of original (non-augmented)
 
 | Metric | Value |
 | :--- | :--- |
-| **Overall Accuracy** | **97.0%** |
-| **Weighted F1-Score** | **0.97** |
-| **Chainsaw Recall** | 100% |
-| **Gunshot Recall** | 100% |
-| **Heavy Machine Recall** | 97% |
+| **Overall Accuracy** | **94.4.0%** |
+| **Weighted F1-Score** | **0.94.4** |
+| **Chainsaw Recall** | 95% |
+| **Gunshot Recall** | 95% |
+| **Heavy Machine Recall** | 93% |
 | **Normal Forest Recall** | 95% |
 
 **Confidence Threshold:** A prediction is only accepted if the model's top class probability is ≥ **65%**. Otherwise the audio is flagged as `OTHER / AMBIENT` to prevent false alarms from unknown sounds.
