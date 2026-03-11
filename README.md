@@ -9,15 +9,15 @@ The model has been rigorously tested on original forest audio data and achieved 
 
 | Metric | Value |
 | :--- | :--- |
-| **Overall Accuracy** | **97.0%** |
-| **Chainsaw Recall** | 100% |
-| **Gunshot Recall** | 100% |
-| **F1-Score (Weighted)**| 0.97 |
+| **Overall Accuracy** | **94.4%** |
+| **Chainsaw Recall** | 95% |
+| **Gunshot Recall** | 95% |
+| **F1-Score (Weighted)**| 0.94.4 |
 
 ### Classification Breakdown
-*   **Chainsaw**: High precision (95%) and perfect recall (100%).
-*   **Gunshot**: Perfect precision and recall (100%).
-*   **Heavy Machine**: Strong detection (93% precision, 97% recall).
+*   **Chainsaw**: High precision (95%) and perfect recall (95%).
+*   **Gunshot**: Perfect precision and recall (95%).
+*   **Heavy Machine**: Strong detection (93% precision, 94% recall).
 *   **Normal Forest**: High accuracy in filtering ambient noise (95% recall).
 
 ---
