@@ -6,7 +6,6 @@ import librosa.display
 import matplotlib.pyplot as plt
 from tensorflow.keras.models import load_model
 
-# --- SETTINGS ---
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 MODEL_PATH = os.path.join(SCRIPT_DIR, "forest_sound_model_v2.h5")
 NORM_STATS_PATH = os.path.join(SCRIPT_DIR, "norm_stats.npy")
@@ -18,7 +17,6 @@ MAX_LEN = 130
 CLASSES = ['chainsaw', 'gunshot', 'heavy_machine', 'normal']
 CONFIDENCE_THRESHOLD = 0.65  # 65% Threshold for "Other"
 
-# --- CACHED RESOURCES ---
 @st.cache_resource
 def load_audio_model():
     return load_model(MODEL_PATH)
@@ -28,7 +26,6 @@ def load_norm_stats():
     stats = np.load(NORM_STATS_PATH, allow_pickle=True).item()
     return stats['mean'], stats['std']
 
-# --- HELPER FUNCTIONS ---
 def extract_mel(audio_bytes):
     try:
         # Load from memory
@@ -63,7 +60,6 @@ def plot_spectrogram(mel_db):
     ax.set(title='Mel-frequency spectrogram')
     return fig
 
-# --- UI LAYOUT ---
 st.set_page_config(page_title="Forest Guardian AI", page_icon="🌳", layout="centered")
 
 st.title("🌳 Forest Guardian AI")
@@ -72,7 +68,6 @@ Monitor forest sounds for illegal activities like logging and poaching.
 Upload a `.wav` file to detect specific sound signatures.
 """)
 
-# Load resources
 try:
     model = load_audio_model()
     mean, std = load_norm_stats()
@@ -85,12 +80,12 @@ uploaded_file = st.file_uploader("Choose a WAV file", type=["wav"])
 if uploaded_file is not None:
     st.subheader("Analysis Results")
     
-    # Process audio
+    
     with st.spinner("Analyzing sound waves..."):
         mel, audio = extract_mel(uploaded_file)
         
         if mel is not None:
-            # UI Columns
+            
             col1, col2 = st.columns([1.5, 1])
             
             with col1:
@@ -98,11 +93,10 @@ if uploaded_file is not None:
                 st.audio(uploaded_file, format='audio/wav')
                 
             with col2:
-                # Prepare for model
+
                 X = np.array([mel])[..., np.newaxis]
                 X = (X - mean) / std
-                
-                # Prediction
+
                 preds = model.predict(X, verbose=0)[0]
                 max_idx = np.argmax(preds)
                 max_conf = preds[max_idx]
@@ -110,14 +104,14 @@ if uploaded_file is not None:
                 # Confidence Threshold Logic
                 if max_conf < CONFIDENCE_THRESHOLD:
                     label = "OTHER / AMBIENT"
-                    color = "#6c757d" # Gray
+                    color = "#6c757d"
                 else:
                     label = CLASSES[max_idx].upper()
-                    # Color coding based on alarm level
+
                     if label in ['CHAINSAW', 'GUNSHOT', 'HEAVY_MACHINE']:
-                        color = "#ff4b4b" # Red (Danger)
+                        color = "#ff4b4b" 
                     else:
-                        color = "#28a745" # Green (Safe)
+                        color = "#28a745"
                 
                 st.markdown(f"### Predicted Class")
                 st.markdown(f"<h2 style='color: {color}; text-align: center;'>{label}</h2>", unsafe_allow_html=True)
