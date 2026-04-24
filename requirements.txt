@@ -4,4 +4,6 @@ librosa
 numpy
 matplotlib
 scikit-learn
-tqdm
+google-genai
+pillow
+python-dotenv
